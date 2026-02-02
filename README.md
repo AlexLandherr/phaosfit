@@ -1,5 +1,8 @@
 # phaosfit
-A CLI aspect ratio / resolution fitter written in C.
+A CLI aspect ratio / resolution fitter written in C.  
+
+Based on this tutorial:
+https://www.marcusfolkesson.se/blog/cmdline-parsing/
 
 # Install & Build
 First clone the repo:
@@ -28,5 +31,6 @@ Example entering aspect ratio and getting list of pixel resolutions (pixel list 
 
 should for now just return:
 ```
-16:9
+Passed value: '16:9'
+W: 16.000000000000000, H: 9
 ```

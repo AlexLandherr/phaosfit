@@ -3,7 +3,11 @@
 #include <getopt.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdbool.h>
+#include "formats/aspect_ratio.h"
 #include "arguments/arguments.h"
+#include "validation/validation.h"
+#include "parse/parse.h"
 
 int main(int argc, char *argv[]) {
     int opt = 0;
@@ -17,31 +21,39 @@ int main(int argc, char *argv[]) {
         {0, 0, 0, 0}
     };
 
-    // "r:" means: -r requires an argument.
+    //"r:" means: -r requires an argument.
     while ((opt = getopt_long(argc, argv, "r:", long_options, &long_index)) != -1) {
         switch (opt) {
             case 'r':
-                // Store the ratio string in the 'arguments' struct.
+                //Store the ratio string in the 'arguments' struct.
                 strncpy(arguments.ratio, optarg, sizeof(arguments.ratio) - 1);
                 arguments.ratio[sizeof(arguments.ratio) - 1] = '\0';
                 break;
 
             case '?':
             default:
-                // Unknown option / missing argument.
+                //Unknown option / missing argument.
                 fprintf(stderr, "Usage: %s -r \"W:H\"  (or --ratio \"W:H\")\n", argv[0]);
                 return 1;
         }
     }
 
-    // For now: just print whatever was supplied.
+    //For now: just print whatever was supplied.
     if (arguments.ratio[0] == '\0') {
         fprintf(stderr, "Missing required option: -r/--ratio\n");
         fprintf(stderr, "Usage: %s -r \"W:H\"  (or --ratio \"W:H\")\n", argv[0]);
         return 1;
     }
 
-    printf("%s\n", arguments.ratio);
+    //Validity check of ratio string.
+    if (!is_valid_ratio_str(arguments.ratio)) {
+        fprintf(stderr, "Invalid ratio string: '%s'\n", arguments.ratio);
+        return 1;
+    }
+    //Using arguments.ratio by printing it to stdout.
+    printf("Passed value: '%s'\n", arguments.ratio);
+    struct aspect_ratio ar = parse_aspect_ratio(arguments.ratio);
+    printf("W: %.15f, H: %ld\n", ar.w, ar.h);
 
     return 0;
 }
