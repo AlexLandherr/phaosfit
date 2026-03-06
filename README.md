@@ -36,8 +36,8 @@ make
 ## Requirement of Input Aspect Ratio
 - The string must always follow the general form `W:H`.
 - W can be either an integer or floating point value, the `.` (period) character shall always be used as the<br>
-  decimal sign/decimal separator. A string like `1.:1` should be interpreted as `1.0:1`, i.e. W is the IEEE 754 double<br>
-  representation of 1.
+  decimal sign/decimal separator. A string like `1.:1` should be interpreted as `1.0:1`, i.e. W<br>
+  is the IEEE 754 double representation of 1.
 - W must be greater than or equal to 1.
 - H must always be an integer.
 - H must be greater than or equal to 1.
