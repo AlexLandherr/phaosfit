@@ -41,9 +41,8 @@ make
 - W must be greater than or equal to 1.
 - H must always be an integer.
 - H must be greater than or equal to 1.
-- The `:` (colon) character must always sit between W and H and be present in the string, e.g. `16:9` is valid but<br>
-  `169:` or `:169` or `169` etc. is invalid. Cases like `16:916:9`, `16:9 16:9` or ratio strings that have more<br>
-  than 1 valid match are to be considered invalid as the string should only ever hold/represent 1 aspect ratio.
+- The `:` (colon) character must always sit between W and H and be present in the string, e.g. `16:9` is valid but `169:` or `:169` or `169` etc. is invalid.
+- Cases like `16:916:9`, `16:9 16:9` or ratio strings that have more than 1 valid match are to be considered invalid as the string should only ever hold/represent 1 aspect ratio.
 - W cannot be less than H.
 - Conditions like W == H (W is equal to H) are to be considered valid.
 
