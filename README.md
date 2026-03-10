@@ -27,6 +27,18 @@ Then build & compile using `make`:
 make
 ```
 
+## Why the name *phaosfit*?
+
+The **phaos** in **phaosfit** comes from the Ancient Greek word **φάος** (*pháos*), meaning **“light”** or **“daylight”**. The related Attic form is **φῶς** (*phôs*), a contracted form of **φάος**. In that sense, the name is meant to evoke **light**, optics and image-making, while **fit** reflects the program’s purpose of fitting or calculating resolutions against a target aspect ratio (Logeion, n.d.; Wiktionary, n.d.-a; Wiktionary, n.d.-b).
+
+### References
+
+Logeion (n.d.) *φάος*. University of Chicago. Available at: https://logeion.uchicago.edu/%CF%86%CE%AC%CE%BF%CF%82 (Accessed: 2026-03-10).
+
+Wiktionary (n.d.-a) *φάος*. Available at: https://en.wiktionary.org/wiki/%CF%86%CE%AC%CE%BF%CF%82 (Accessed: 2026-03-10).
+
+Wiktionary (n.d.-b) *φῶς*. Available at: https://en.wiktionary.org/wiki/%CF%86%E1%BF%B6%CF%82 (Accessed: 2026-03-10).
+
 # Algorithm (Core Requirements)
 ## Terminology
 - W refers to frame/image width; can be given as a dimensionless quantity or with a unit of mm (millimeters), inches or pixels.
