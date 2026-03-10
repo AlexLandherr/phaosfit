@@ -52,8 +52,17 @@ int main(int argc, char *argv[]) {
     }
     //Using arguments.ratio by printing it to stdout.
     printf("Passed value: '%s'\n", arguments.ratio);
-    struct aspect_ratio ar = parse_aspect_ratio(arguments.ratio);
-    printf("W: %.15f, H: %ld\n", ar.w, ar.h);
+
+    //Check if W is a decimal/floating-point value.
+    if (W_is_float_str(arguments.ratio)) {
+        printf("W is a floating-point value!\n");
+        struct aspect_ratio_decimal ar_float = parse_aspect_ratio_decimal(arguments.ratio);
+        printf("W: %.15f, H: %ld\n", ar_float.w, ar_float.h);
+    } else {
+        printf("W is an integer value!\n");
+        struct aspect_ratio_integer ar_int = parse_aspect_ratio_integer(arguments.ratio);
+        printf("W: %ld, H: %ld\n", ar_int.w, ar_int.h);
+    }
 
     return 0;
 }

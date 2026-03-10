@@ -1,8 +1,13 @@
 #include "../formats/aspect_ratio.h"
+#include <stdbool.h>
 
 #ifndef PARSE_H
 #define PARSE_H
 
-struct aspect_ratio parse_aspect_ratio(char *ratio_str);
+bool W_is_float_str(char *ratio_str);
+
+struct aspect_ratio_decimal parse_aspect_ratio_decimal(char *ratio_str);
+
+struct aspect_ratio_integer parse_aspect_ratio_integer(char *ratio_str);
 
 #endif
