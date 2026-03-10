@@ -61,8 +61,26 @@ Example entering aspect ratio and getting list of pixel resolutions (pixel list 
 ./phaosfit --ratio "16:9"
 ```
 
+or
+
+```bash
+./phaosfit -r 1.85:1
+./phaosfit -r "1.85:1"
+./phaosfit --ratio 1.85:1
+./phaosfit --ratio "1.85:1"
+```
+
 should for now just return:
 ```bash
 Passed value: '16:9'
-W: 16.000000000000000, H: 9
+W is an integer value!
+W: 16, H: 9
+```
+
+or
+
+```bash
+Passed value: '1.85:1'
+W is a floating-point value!
+W: 1.850000000000000, H: 1
 ```
