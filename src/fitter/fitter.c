@@ -1,5 +1,36 @@
 #include "fitter.h"
-#include "formats/aspect_ratio.h"
-#include "formats/raster_pair.h"
+#include "../formats/aspect_ratio.h"
+#include "../formats/raster_pair.h"
+#include "../constants/video_resolutions.h"
+#include "../helpers/simplify_fraction.h"
 
-struct raster_pair fitter_integer_ratio(const struct aspect_ratio_integer *ratio) {}
+void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair_array *dst_array) {
+    //Can aspect ratio be simplified?
+    long ar_gcd = gcd(ratio->w, ratio->h);
+    if (ar_gcd != 1) {
+        //Can be simplified.
+        simplify_fraction(ratio);
+    } //Else (ar_gcd == 1) -> cannot be simplified further.
+
+    //Is aspect ratio even (i.e. are W and H even)?
+    if (ratio->w % 2 != 0 && ratio->h % 2 != 0) {
+        //Not even, multiply W and H by 2.
+        ratio->w = ratio->w * 2;
+        ratio->h = ratio->h * 2;
+    } //Else, they are even no need to multiply W and H by 2.
+
+    /*
+    Multiply W and H by all integers from 1 up to and including W_MAX_RESOLUTION_PIXELS
+    (or W_MAX_RESOLUTION_PIXELS since they're equal).
+
+    Like so:
+    1, 2, 3, ... , W_MAX_RESOLUTION_PIXELS
+    */
+    for (long i = 1; i <= W_MAX_RESOLUTION_PIXELS; i++) {
+        long raster_pair_w = ratio->w * i;
+        long raster_pair_h = ratio->h * i;
+
+        struct raster_pair array_pair_entry = {raster_pair_w, raster_pair_h};
+        append_raster_pair_array(dst_array, array_pair_entry);
+    }
+}

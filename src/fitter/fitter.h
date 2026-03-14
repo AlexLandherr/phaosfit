@@ -4,6 +4,6 @@
 #ifndef FITTER_H
 #define FITTER_H
 
-struct raster_pair fitter_integer_ratio(const struct aspect_ratio_integer *ratio);
+void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair_array *dst_array);
 
 #endif

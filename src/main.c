@@ -8,6 +8,9 @@
 #include "arguments/arguments.h"
 #include "validation/validation.h"
 #include "parse/parse.h"
+#include "helpers/simplify_fraction.h"
+#include "formats/raster_pair.h"
+#include "fitter/fitter.h"
 
 int main(int argc, char *argv[]) {
     int opt = 0;
@@ -59,9 +62,23 @@ int main(int argc, char *argv[]) {
         struct aspect_ratio_decimal ar_float = parse_aspect_ratio_decimal(arguments.ratio);
         printf("W: %.15f, H: %ld\n", ar_float.w, ar_float.h);
     } else {
+        //Declare and initialize array to hold all raster pairs for integer case.
+        struct raster_pair_array pairs_integer_case;
+        pairs_integer_case.count = 0;
+        pairs_integer_case.array = NULL;
         printf("W is an integer value!\n");
         struct aspect_ratio_integer ar_int = parse_aspect_ratio_integer(arguments.ratio);
         printf("W: %ld, H: %ld\n", ar_int.w, ar_int.h);
+        
+        //Calculate rasters.
+        fitter_integer_ratio(&ar_int, &pairs_integer_case);
+
+        //Print results.
+        for (unsigned long i = 0; i < pairs_integer_case.count; i++) {
+            printf("W_pix: %ld, H_pix: %ld\n", pairs_integer_case.array[i].raster_w, pairs_integer_case.array[i].raster_h);
+        }
+
+        free(pairs_integer_case.array); //Free up the memory.
     }
 
     return 0;

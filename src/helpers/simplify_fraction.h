@@ -3,7 +3,7 @@
 #ifndef SIMPLIFY_FRACTION_H
 #define SIMPLIFY_FRACTION_H
 
-long gcd(const struct aspect_ratio_integer *ratio);
+long gcd(long w, long h);
 
 void simplify_fraction(struct aspect_ratio_integer *ratio);
 
