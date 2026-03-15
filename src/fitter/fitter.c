@@ -3,6 +3,7 @@
 #include "../formats/raster_pair.h"
 #include "../constants/video_resolutions.h"
 #include "../helpers/simplify_fraction.h"
+#include <stdbool.h>
 
 void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair_array *dst_array) {
     //Can aspect ratio be simplified?
@@ -26,11 +27,17 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
     Like so:
     1, 2, 3, ... , W_MAX_RESOLUTION_PIXELS
     */
-    for (long i = 1; i <= W_MAX_RESOLUTION_PIXELS; i++) {
+    long i = 1;
+    while (true) {
         long raster_pair_w = ratio->w * i;
         long raster_pair_h = ratio->h * i;
 
-        struct raster_pair array_pair_entry = {raster_pair_w, raster_pair_h};
-        append_raster_pair_array(dst_array, array_pair_entry);
+        if (raster_pair_w > W_MAX_RESOLUTION_PIXELS || raster_pair_h > W_MAX_RESOLUTION_PIXELS) {
+            break;
+        } else {
+            struct raster_pair array_pair_entry = {raster_pair_w, raster_pair_h};
+            append_raster_pair_array(dst_array, array_pair_entry);
+            i++;
+        }
     }
 }

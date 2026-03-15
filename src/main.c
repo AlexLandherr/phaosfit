@@ -11,6 +11,7 @@
 #include "helpers/simplify_fraction.h"
 #include "formats/raster_pair.h"
 #include "fitter/fitter.h"
+#include "helpers/deviation.h"
 
 int main(int argc, char *argv[]) {
     int opt = 0;
@@ -75,7 +76,11 @@ int main(int argc, char *argv[]) {
 
         //Print results.
         for (unsigned long i = 0; i < pairs_integer_case.count; i++) {
-            printf("W_pix: %ld, H_pix: %ld\n", pairs_integer_case.array[i].raster_w, pairs_integer_case.array[i].raster_h);
+            double actual_aspect_ratio = (double)pairs_integer_case.array[i].raster_w / (double)pairs_integer_case.array[i].raster_h;
+            double nominal_aspect_ratio = (double)ar_int.w / (double)ar_int.h;
+            
+            printf("W_pix: %ld, H_pix: %ld ", pairs_integer_case.array[i].raster_w, pairs_integer_case.array[i].raster_h);
+            printf("Deviation from %s (±%%): %.15lf\n", arguments.ratio, delta_aspect_ratio(&actual_aspect_ratio, &nominal_aspect_ratio));
         }
 
         free(pairs_integer_case.array); //Free up the memory.

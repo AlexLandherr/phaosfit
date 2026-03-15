@@ -65,7 +65,7 @@ Wiktionary (n.d.-b) *φῶς*. Available at: https://en.wiktionary.org/wiki/%CF%
 - Deviation from target AR must be given as `±%` to 15 decimal places, e.g. `-0.000000000000012%` or `+0.000000000000012%`.
 
 # Usage
-Example entering aspect ratio and getting list of pixel resolutions (pixel list part far from implemented yet):
+Example entering aspect ratio and getting list of pixel resolutions (pixel list part far from fully implemented yet):
 ```bash
 ./phaosfit -r 16:9
 ./phaosfit -r "16:9"
@@ -82,11 +82,21 @@ or
 ./phaosfit --ratio "1.85:1"
 ```
 
-should for now just return:
+should for now just return the below, now it just calculates up to W_MAX_RESOLUTION_PIXELS.
+Depending on your terminal settings all output may not be visible:
 ```bash
 Passed value: '16:9'
 W is an integer value!
-W: 16, H: 9
+...
+W_pix: 65408, H_pix: 36792 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65424, H_pix: 36801 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65440, H_pix: 36810 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65456, H_pix: 36819 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65472, H_pix: 36828 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65488, H_pix: 36837 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65504, H_pix: 36846 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65520, H_pix: 36855 Deviation from 16:9 (±%): 0.000000000000000
+W_pix: 65536, H_pix: 36864 Deviation from 16:9 (±%): 0.000000000000000
 ```
 
 or
