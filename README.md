@@ -82,7 +82,7 @@ or
 ./phaosfit --ratio "1.85:1"
 ```
 
-should for now just return the below, now it just calculates up to W_MAX_RESOLUTION_PIXELS.
+should for now just return the below, now it just calculates up to `W_MAX_RESOLUTION_PIXELS`.
 Depending on your terminal settings all output may not be visible:
 ```bash
 Passed value: '16:9'
