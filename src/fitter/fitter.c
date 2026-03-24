@@ -21,11 +21,15 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
     } //Else, they are even no need to multiply W and H by 2.
 
     /*
-    Multiply W and H by all integers from 1 up to and including W_MAX_RESOLUTION_PIXELS
-    (or W_MAX_RESOLUTION_PIXELS since they're equal).
+    Multiply W and H by all integers from 1 and up as long as the product of
+    W * i and H * i are less than W_MAX_RESOLUTION_PIXELS (or H_MAX_RESOLUTION_PIXELS since they're equal).
 
     Like so:
-    1, 2, 3, ... , W_MAX_RESOLUTION_PIXELS
+    W * 1, H * 1
+    W * 2, H * 2
+    W * 3, H * 3
+    ...
+    as long as none of the products are greater than W_MAX_RESOLUTION_PIXELS.
     */
     long i = 1;
     while (true) {

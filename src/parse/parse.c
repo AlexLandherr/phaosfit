@@ -10,10 +10,6 @@ bool W_is_float_str(char *ratio_str) {
     return decimal_sign == NULL ? false : true;
 }
 
-/*
-Parse aspect ratio when W is a decimal value/floating point value,
-e.g. "1.85:1" or "2.39:1" etc.
-*/
 struct aspect_ratio_decimal parse_aspect_ratio_decimal(char *ratio_str) {
     struct aspect_ratio_decimal ar = {0};
 
@@ -31,10 +27,6 @@ struct aspect_ratio_decimal parse_aspect_ratio_decimal(char *ratio_str) {
     return ar;
 }
 
-/*
-Parse aspect ratio when W is a integer value,
-e.g. "16:9" or "4:3" etc.
-*/
 struct aspect_ratio_integer parse_aspect_ratio_integer(char *ratio_str) {
     struct aspect_ratio_integer ar = {0};
 

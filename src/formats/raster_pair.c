@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
-Add/append a raster_pair struct object to the end of a
-raster_pair_array struct array. If array is empty added
-object will be added at the first/0-th index.
-*/
 void append_raster_pair_array(struct raster_pair_array *dst_array, struct raster_pair pair) {
     if (dst_array->count == 0) {
         dst_array->array = malloc(sizeof(struct raster_pair));

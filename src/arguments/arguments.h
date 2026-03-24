@@ -4,7 +4,7 @@
 #define ARGUMENTS_H
 
 struct arguments {
-    char ratio[1024];
+    char ratio[512];
 };
 
 #endif
