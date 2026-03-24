@@ -12,7 +12,7 @@
  * in order to determine which parser function to use.
  * 
  * Context: Any context.
- * Return: A boolean representing indicating if the W is a floating-point value or not.
+ * Return: A boolean indicating if the W is a floating-point value or not.
  */
 bool W_is_float_str(char *ratio_str);
 
