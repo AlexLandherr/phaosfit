@@ -21,17 +21,19 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
     } //Else, they are even no need to multiply W and H by 2.
 
     /*
-    Multiply W and H by all integers from 1 and up as long as the product of
+    Multiply W and H by all even integers from 2 and up as long as the product of
     W * i and H * i are less than W_MAX_RESOLUTION_PIXELS (or H_MAX_RESOLUTION_PIXELS since they're equal).
 
     Like so:
-    W * 1, H * 1
     W * 2, H * 2
-    W * 3, H * 3
+    W * 4, H * 4
+    W * 6, H * 6
     ...
     as long as none of the products are greater than W_MAX_RESOLUTION_PIXELS.
     */
-    long i = 1;
+    /* struct raster_pair first_array_entry = {ratio->w, ratio->h};
+    append_raster_pair_array(dst_array, first_array_entry); */
+    long i = 2;
     while (true) {
         long raster_pair_w = ratio->w * i;
         long raster_pair_h = ratio->h * i;
@@ -41,7 +43,7 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
         } else {
             struct raster_pair array_pair_entry = {raster_pair_w, raster_pair_h};
             append_raster_pair_array(dst_array, array_pair_entry);
-            i++;
+            i += 2;
         }
     }
 }

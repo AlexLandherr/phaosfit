@@ -1,9 +1,13 @@
 #include "../formats/raster_pair.h"
 #include "../formats/aspect_ratio.h"
 #include "../arguments/arguments.h"
+#include <stdbool.h>
+#include <stddef.h>
 
 #ifndef PRINTOUT_H
 #define PRINTOUT_H
+
+#define DASH_LINE "------------------------------------------------------------------------------------------"
 
 /**
  * raster_pair_printout() - Prints all raster pairs to stdout as a formatted string with printf().
