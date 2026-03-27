@@ -1,5 +1,5 @@
 # phaosfit
-A CLI aspect ratio / resolution fitter written in C.  
+A CLI aspect ratio resolution fitter written in C.  
 
 Based on this tutorial:
 https://www.marcusfolkesson.se/blog/cmdline-parsing/
