@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    //For now: just print whatever was supplied.
+    //Using "-r"/"--ratio".
     if (arguments.ratio[0] == '\0') {
         fprintf(stderr, "Missing required option: -r/--ratio\n");
         fprintf(stderr, "Usage: %s -r \"W:H\"  (or --ratio \"W:H\")\n", argv[0]);

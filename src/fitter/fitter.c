@@ -31,8 +31,6 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
     ...
     as long as none of the products are greater than W_MAX_RESOLUTION_PIXELS.
     */
-    /* struct raster_pair first_array_entry = {ratio->w, ratio->h};
-    append_raster_pair_array(dst_array, first_array_entry); */
     long i = 2;
     while (true) {
         long raster_pair_w = ratio->w * i;
