@@ -1,4 +1,4 @@
-
+#include <stdint.h>
 
 #ifndef ASPECT_RATIO_H
 #define ASPECT_RATIO_H
@@ -13,7 +13,7 @@
  */
 struct aspect_ratio_decimal {
     double w;
-    long h;
+    uint64_t h;
 };
 
 /**
@@ -24,8 +24,8 @@ struct aspect_ratio_decimal {
  * Store an aspect ratio in W:H form where both @w and @h are integer values.
  */
 struct aspect_ratio_integer {
-    long w;
-    long h;
+    uint64_t w;
+    uint64_t h;
 };
 
 #endif

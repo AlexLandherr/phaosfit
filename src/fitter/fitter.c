@@ -4,10 +4,11 @@
 #include "../constants/video_resolutions.h"
 #include "../helpers/simplify_fraction.h"
 #include <stdbool.h>
+#include <stdint.h>
 
 void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair_array *dst_array) {
     //Can aspect ratio be simplified?
-    long ar_gcd = gcd(ratio->w, ratio->h);
+    uint64_t ar_gcd = gcd(ratio->w, ratio->h);
     if (ar_gcd != 1) {
         //Can be simplified.
         simplify_fraction(ratio);
@@ -31,10 +32,10 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
     ...
     as long as none of the products are greater than W_MAX_RESOLUTION_PIXELS.
     */
-    long i = 2;
+    uint64_t i = 2;
     while (true) {
-        long raster_pair_w = ratio->w * i;
-        long raster_pair_h = ratio->h * i;
+        uint64_t raster_pair_w = ratio->w * i;
+        uint64_t raster_pair_h = ratio->h * i;
 
         if (raster_pair_w > W_MAX_RESOLUTION_PIXELS || raster_pair_h > W_MAX_RESOLUTION_PIXELS) {
             break;

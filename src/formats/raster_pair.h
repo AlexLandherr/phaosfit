@@ -1,4 +1,4 @@
-
+#include <stdint.h>
 
 #ifndef RASTER_PAIR_H
 #define RASTER_PAIR_H
@@ -11,8 +11,8 @@
  * Store the computed pixel raster dimensions that fit a given aspect ratio.
  */
 struct raster_pair {
-    long raster_w;
-    long raster_h;
+    uint64_t raster_w;
+    uint64_t raster_h;
 };
 
 /**
@@ -25,7 +25,7 @@ struct raster_pair {
  */
 struct raster_pair_array {
     struct raster_pair *array;
-    unsigned long count;
+    uint64_t count;
 };
 
 /**

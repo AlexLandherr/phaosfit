@@ -22,7 +22,7 @@ struct aspect_ratio_decimal parse_aspect_ratio_decimal(char *ratio_str) {
     w_buf[w_len] = '\0';
 
     ar.w = strtod(w_buf, NULL);
-    ar.h = strtol(colon + 1, NULL, 10);
+    ar.h = strtoull(colon + 1, NULL, 10);
 
     return ar;
 }
@@ -38,7 +38,7 @@ struct aspect_ratio_integer parse_aspect_ratio_integer(char *ratio_str) {
     memcpy(w_buf, ratio_str, w_len);
     w_buf[w_len] = '\0';
 
-    ar.w = strtol(w_buf, NULL, 10);
+    ar.w = strtoull(w_buf, NULL, 10);
     ar.h = strtol(colon + 1, NULL, 10);
 
     return ar;

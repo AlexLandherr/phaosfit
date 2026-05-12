@@ -1,5 +1,6 @@
 #include "simplify_fraction.h"
 #include "../formats/aspect_ratio.h"
+#include <stdint.h>
 
 /**
  * gcd() - Compute the greatest common divisor of two integers.
@@ -12,7 +13,7 @@
  * Context: Any context.
  * Return: The greatest common divisor of @w and @h.
  */
-long gcd(long w, long h) {
+long gcd(uint64_t w, uint64_t h) {
     if (h == 0) {
         return w;
     }
@@ -21,7 +22,7 @@ long gcd(long w, long h) {
 }
 
 void simplify_fraction(struct aspect_ratio_integer *ratio) {
-    long gcd_result = gcd(ratio->w, ratio->h);
+    uint64_t gcd_result = gcd(ratio->w, ratio->h);
     ratio->w = ratio->w / gcd_result;
     ratio->h = ratio->h / gcd_result;
 }

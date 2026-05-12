@@ -1,9 +1,10 @@
 #include "../formats/aspect_ratio.h"
+#include <stdint.h>
 
 #ifndef SIMPLIFY_FRACTION_H
 #define SIMPLIFY_FRACTION_H
 
-long gcd(long w, long h);
+long gcd(uint64_t w, uint64_t h);
 
 /**
  * simplify_fraction() - Simplify an aspect ratio in place.

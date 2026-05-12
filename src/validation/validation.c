@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 bool is_valid_ratio_str(char *ratio_str) {
     regex_t re;
@@ -57,7 +58,7 @@ bool is_valid_ratio_str(char *ratio_str) {
 
     //5. Convert and enforce W >= H.
     double w = strtod(w_buf, NULL);
-    long h = strtol(hbuf, NULL, 10);
+    uint64_t h = strtoull(hbuf, NULL, 10);
 
     if (w < (double)h) {
         return false;
