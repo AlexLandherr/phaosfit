@@ -1,15 +1,17 @@
 # phaosfit
-A CLI aspect ratio resolution fitter written in C.  
+
+A CLI aspect ratio resolution fitter written in C.
 
 Based on this tutorial:
 https://www.marcusfolkesson.se/blog/cmdline-parsing/
 
 # Install & Build
+
 This assumes that you run a Debian-based Linux distribution.
 
 Make sure the right tools are installed:
 ```bash
-sudo apt update && sudo apt install build-essential
+sudo apt update && sudo apt install build-essential cmake
 ```
 
 Then clone the repo:
@@ -17,14 +19,15 @@ Then clone the repo:
 git clone https://github.com/AlexLandherr/phaosfit.git
 ```
 
-Change directory to repo:
+Change directory to the repo:
 ```bash
 cd phaosfit/
 ```
 
-Then build & compile using `make`:
+Then configure and build using `CMake`:
 ```bash
-make
+cmake -S . -B build
+cmake --build build
 ```
 
 ## Why the name *phaosfit*?
@@ -40,51 +43,55 @@ Wiktionary (n.d.-a) *φάος*. Available at: https://en.wiktionary.org/wiki/%CF
 Wiktionary (n.d.-b) *φῶς*. Available at: https://en.wiktionary.org/wiki/%CF%86%E1%BF%B6%CF%82 (Accessed: 2026-03-10).
 
 # Algorithm (Core Requirements)
+
 ## Terminology
+
 - W refers to frame/image width; can be given as a dimensionless quantity or with a unit of mm (millimeters), inches or pixels.
 - H refers to frame/image height; can be given as a dimensionless quantity or with a unit of mm (millimeters), inches or pixels.
 - AR refers to the aspect ratio; defined as the ratio of an image's width to its height in the form `W:H`.
 
 ## Requirement of Input Aspect Ratio
+
 - The string must always follow the general form `W:H`.
-- W can be either an integer or floating point value, the `.` (period) character shall always be used as the<br>
-  decimal sign/decimal separator. A string like `1.:1` should be interpreted as `1.0:1`, i.e. W<br>
-  is the IEEE 754 double representation of 1.
+- W can be either an integer or floating point value; the `.` (period) character shall always be used as the decimal sign/decimal separator. A string like `1.:1` should be interpreted as `1.0:1`, i.e. W is the IEEE 754 double representation of 1.
 - W must be greater than or equal to 1.
 - H must always be an integer.
 - H must be greater than or equal to 1.
-- The `:` (colon) character must always sit between W and H and be present in the string, e.g. `16:9` is valid but `169:` or `:169` or `169` etc. is invalid.
-- Cases like `16:916:9`, `16:9 16:9` or ratio strings that have more than 1 valid match are to be considered invalid as the string should only ever hold/represent 1 aspect ratio.
+- The `:` (colon) character must always sit between W and H and be present in the string, e.g. `16:9` is valid but `169:`, `:169` or `169` etc. are invalid.
+- Cases like `16:916:9`, `16:9 16:9` or ratio strings that have more than 1 valid match are to be considered invalid, as the string should only ever hold/represent 1 aspect ratio.
 - W cannot be less than H.
 - Conditions like W == H (W is equal to H) are to be considered valid.
 
 ## Requirements of Output Results
-- W and H given in pixles.
+
+- W and H are given in pixels.
 - All solutions must be for a raster of square pixels.
 - W and H must be even positive integers.
 - Deviation from target AR must be given as `±%` to 15 decimal places, e.g. `-0.000000000000012%` or `+0.000000000000012%`.
 
 # Usage
+
 Example entering aspect ratio and getting list of pixel resolutions (pixel list part far from fully implemented yet):
+
 ```bash
-./phaosfit -r 16:9
-./phaosfit -r "16:9"
-./phaosfit --ratio 16:9
-./phaosfit --ratio "16:9"
+./build/phaosfit -r 16:9
+./build/phaosfit -r "16:9"
+./build/phaosfit --ratio 16:9
+./build/phaosfit --ratio "16:9"
 ```
 
 or
 
 ```bash
-./phaosfit -r 1.85:1
-./phaosfit -r "1.85:1"
-./phaosfit --ratio 1.85:1
-./phaosfit --ratio "1.85:1"
+./build/phaosfit -r 1.85:1
+./build/phaosfit -r "1.85:1"
+./build/phaosfit --ratio 1.85:1
+./build/phaosfit --ratio "1.85:1"
 ```
 
-should for now just return the below, now it just calculates up to `W_MAX_RESOLUTION_PIXELS`.
-Depending on your terminal settings all output may not be visible:
-```bash
+For now, `16:9` output should look similar to the example below. The program currently calculates up to `W_MAX_RESOLUTION_PIXELS`. Depending on your terminal settings, all output may not be visible:
+
+```text
 Passed value: '16:9'
 W is an integer value!
 ------------------------------------------------------------------------------------------
@@ -114,7 +121,7 @@ W is an integer value!
 
 or
 
-```bash
+```text
 Passed value: '1.85:1'
 W is a floating-point value!
 W: 1.850000000000000, H: 1

@@ -63,7 +63,6 @@ int main(int argc, char *argv[]) {
     if (W_is_float_str(arguments.ratio)) {
         printf("W is a floating-point value!\n");
         struct aspect_ratio_decimal ar_float = parse_aspect_ratio_decimal(arguments.ratio);
-        //printf("W: %.15f, H: %ld\n", ar_float.w, ar_float.h);
         printf("W: %.15f, H: %" PRIu64 "\n", ar_float.w, ar_float.h);
     } else {
         //Declare and initialize array to hold all raster pairs for integer case.

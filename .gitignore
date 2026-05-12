@@ -57,3 +57,6 @@ dkms.conf
 
 # VS Code Stuff
 .vscode/
+
+# CMake Stuff
+build/
