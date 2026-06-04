@@ -46,3 +46,5 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
         }
     }
 }
+
+void fitter_decimal_ratio(struct aspect_ratio_decimal *ratio, struct raster_pair_array *dst_array) {}
