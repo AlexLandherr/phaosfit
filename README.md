@@ -59,7 +59,7 @@ Wiktionary (n.d.-b) *φῶς*. Available at: https://en.wiktionary.org/wiki/%CF%
 - W and H are given in pixels.
 - All solutions must be for a raster of square pixels.
 - W and H must be even positive integers.
-- Deviation from target AR must be given as `±%` to 15 decimal places, e.g. `-0.000000000000012%` or `+0.000000000000012%`.
+- Deviation from target AR is given as `±%` to available floating-point significant digits available on the target platform.
 
 # Usage
 Example entering aspect ratio and getting list of pixel resolutions (pixel list part far from fully implemented yet):
