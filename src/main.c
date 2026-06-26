@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <inttypes.h>
+#include <locale.h>
 #include "formats/aspect_ratio.h"
 #include "arguments/arguments.h"
 #include "validation/validation.h"
@@ -16,6 +17,8 @@
 #include "helpers/printout.h"
 
 int main(int argc, char *argv[]) {
+    setlocale(LC_CTYPE, "");
+
     int opt = 0;
     int long_index = 0;
 
@@ -61,20 +64,20 @@ int main(int argc, char *argv[]) {
 
     //Check if W is a decimal/floating-point value.
     if (W_is_float_str(arguments.ratio)) {
-        struct raster_pair_array pairs_decimal_case;
+        /* struct raster_pair_array pairs_decimal_case;
         pairs_decimal_case.count = 0;
-        pairs_decimal_case.array = NULL;
+        pairs_decimal_case.array = NULL; */
         printf("W is a floating-point value!\n");
         struct aspect_ratio_decimal ar_decimal = parse_aspect_ratio_decimal(arguments.ratio);
         printf("W: %.15f, H: %" PRIu64 "\n", ar_decimal.w, ar_decimal.h);
 
         //Calculate rasters.
-        fitter_decimal_ratio(&ar_decimal, &pairs_decimal_case);
+        //fitter_decimal_ratio(&ar_decimal, &pairs_decimal_case);
 
         //Print results.
-        raster_pair_printout(&ar_decimal, &pairs_decimal_case, &arguments);
+        //raster_pair_printout(&ar_decimal, &pairs_decimal_case, &arguments);
 
-        free(pairs_decimal_case.array); //Free up the memory.
+        //free(pairs_decimal_case.array); //Free up the memory.
     } else {
         //Declare and initialize array to hold all raster pairs for integer case.
         struct raster_pair_array pairs_integer_case;
@@ -83,7 +86,7 @@ int main(int argc, char *argv[]) {
         printf("W is an integer value!\n");
         struct aspect_ratio_integer ar_int = parse_aspect_ratio_integer(arguments.ratio);
         printf("W: %" PRIu64 ", H: %" PRIu64 "\n", ar_int.w, ar_int.h);
-        
+
         //Calculate rasters.
         fitter_integer_ratio(&ar_int, &pairs_integer_case);
 

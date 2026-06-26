@@ -30,6 +30,11 @@ add_executable(${EXECUTABLE_NAME}
     ${PROJECT_SOURCES}
 )
 
+target_compile_definitions(${EXECUTABLE_NAME}
+    PRIVATE
+        _XOPEN_SOURCE=700
+)
+
 # Add the root src/ folder as an include directory
 # (so headers like src/foo/bar.h are found)
 target_include_directories(${EXECUTABLE_NAME}

@@ -13,9 +13,10 @@
  * raster_pair_printout() - Prints all raster pairs to stdout as a formatted string with printf().
  * @pairs: Pointer to raster_pair_array object that holds all computed rasters to print out.
  * @ar_int: Pointer to aspect_ratio_integer object.
- * 
+ * @arg_ratio: Pointer to arguments object containing the user-supplied ratio string.
+ *
  * Prints all entries in @pairs to stdout as a formatted string using printf().
- * 
+ *
  * Context: Any context.
  * Return: None.
  */
