@@ -51,8 +51,7 @@ enum nearest_even_status nearest_even_uint64(double value, uint64_t min_value, u
         nearest_even = upper_even;
     }
 
-    if (nearest_even < (double)min_value ||
-        nearest_even > (double)max_value) {
+    if (nearest_even < (double)min_value || nearest_even > (double)max_value) {
         return NEAREST_EVEN_OUT_OF_RANGE;
     }
 
