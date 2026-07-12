@@ -30,6 +30,12 @@ add_executable(${EXECUTABLE_NAME}
     ${PROJECT_SOURCES}
 )
 
+# Link the C math library, equivalent to -lm
+target_link_libraries(${EXECUTABLE_NAME}
+    PRIVATE
+        m
+)
+
 target_compile_definitions(${EXECUTABLE_NAME}
     PRIVATE
         _XOPEN_SOURCE=700

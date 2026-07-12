@@ -28,6 +28,6 @@ void fitter_integer_ratio(struct aspect_ratio_integer *ratio, struct raster_pair
  * Context: Any context.
  * Return: None.
  */
-void fitter_decimal_ratio(struct aspect_ratio_decimal *ratio, struct raster_pair_array *dst_array);
+void fitter_decimal_ratio(const struct aspect_ratio_decimal *ratio, struct raster_pair_array *dst_array);
 
 #endif

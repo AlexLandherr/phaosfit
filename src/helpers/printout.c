@@ -57,7 +57,7 @@ static void print_right_aligned_display_width(const char *s, int field_width) {
     printf("%*s%s", padding, "", s);
 }
 
-void raster_pair_printout(const struct raster_pair_array *pairs, const struct aspect_ratio_integer *ar_int, const struct arguments *arg_ratio) {
+void raster_pair_printout_integer(const struct raster_pair_array *pairs, const struct aspect_ratio_integer *ar_int, const struct arguments *arg_ratio) {
     char delta_title[sizeof(arg_ratio->ratio) + sizeof("Δ% from ") - 1]; //Dynamically set delta_title to the right size in bytes.
     snprintf(delta_title, sizeof(delta_title), "Δ%% from %s", arg_ratio->ratio);
 
@@ -70,6 +70,31 @@ void raster_pair_printout(const struct raster_pair_array *pairs, const struct as
     for (uint64_t i = 0; i < pairs->count; i++) {
         double actual_aspect_ratio = (double)pairs->array[i].raster_w / (double)pairs->array[i].raster_h;
         double nominal_aspect_ratio = (double)ar_int->w / (double)ar_int->h;
+        double delta_ar = delta_aspect_ratio(&actual_aspect_ratio, &nominal_aspect_ratio);
+
+        printf("| %*" PRIu64 " | %*" PRIu64 " | %+*.*g%% | %-*s |\n",
+               WIDTH_COL_W, pairs->array[i].raster_w,
+               HEIGHT_COL_W, pairs->array[i].raster_h,
+               DELTA_COL_W - 1, DBL_DIG, delta_ar,
+               PLACEHOLDER_COL_W, "EMPTY_PLACEHOLDER_STR"
+        );
+        printf("%s\n", DASH_LINE);
+    }
+}
+
+void raster_pair_printout_decimal(const struct raster_pair_array *pairs, const struct aspect_ratio_decimal *ar_dec, const struct arguments *arg_ratio) {
+    char delta_title[sizeof(arg_ratio->ratio) + sizeof("Δ% from ") - 1]; //Dynamically set delta_title to the right size in bytes.
+    snprintf(delta_title, sizeof(delta_title), "Δ%% from %s", arg_ratio->ratio);
+
+    printf("%s\n", DASH_LINE);
+    printf("| %*s | %*s | ", WIDTH_COL_W, "Width (px)", HEIGHT_COL_W, "Height (px)");
+    print_right_aligned_display_width(delta_title, DELTA_COL_W);
+    printf(" | %-*s |\n", PLACEHOLDER_COL_W, "PLACEHOLDER_FIELD");
+    printf("%s\n", DASH_LINE);
+
+    for (uint64_t i = 0; i < pairs->count; i++) {
+        double actual_aspect_ratio = (double)pairs->array[i].raster_w / (double)pairs->array[i].raster_h;
+        double nominal_aspect_ratio = ar_dec->w / (double)ar_dec->h;
         double delta_ar = delta_aspect_ratio(&actual_aspect_ratio, &nominal_aspect_ratio);
 
         printf("| %*" PRIu64 " | %*" PRIu64 " | %+*.*g%% | %-*s |\n",
