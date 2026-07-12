@@ -79,7 +79,11 @@ or
 ./build/phaosfit --ratio "1.85:1"
 ```
 
-For now, `16:9` output should look similar to the example below. The program currently calculates up to `W_MAX_RESOLUTION_PIXELS`. Depending on your terminal settings, all output may not be visible:
+The program currently calculates up to `W_MAX_RESOLUTION_PIXELS`.
+Depending on your terminal settings, all output may not be visible. Examples shown below
+are only showing the ver start and end of the complete printouts.
+
+Example `16:9` output:
 ```text
 Passed value: '16:9'
 W is an integer value!
@@ -109,8 +113,7 @@ W: 16, H: 9
 ------------------------------------------------------------------------------------------
 ```
 
-or
-
+Example `1.85:1` output:
 ```text
 Passed value: '1.85:1'
 W is a floating-point value!
